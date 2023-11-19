@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Messages</title>
+</head>
+<body>
+<h1>Messages</h1>
+<div>
+    <form action="/save" method="post">
+        <input type="text" name="message" placeholder="Enter your message">
+        <button type="submit">Save</button>
+    </form>
+</div>
+<div>
+    <ul>
+        <li th:each="msg : ${messages}" th:text="${msg}"></li>
+    </ul>
+</div>
+<div>
+    <form action="/destroy-session" method="post">
+        <button type="submit">Destroy Session</button>
+    </form>
+    <a href="savedMsg.html">Go to page2</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Messages</title>
+    <script th:inline="javascript">
+        /* Define a JavaScript function to display a message */
+        function showMessage() {
+            var messageDiv = document.getElementById('message');
+            messageDiv.style.display = 'block';
+        }
+    </script>
+    <style>
+        /* Style for the message box */
+        #message {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<h1>Messages</h1>
+<div>
+    <form action="/save" method="post" onsubmit="showMessage()">
+        <input type="text" name="message" placeholder="Enter your message">
+        <button type="submit">Save</button>
+    </form>
+</div>
+<div id="message">
+    <!-- Message displayed after successful submission -->
+    <p th:if="${param.messageSaved}">Data saved successfully!</p>
+</div>
+<div>
+    <ul>
+        <li th:each="msg : ${session.getAttribute('messages')}" th:text="${msg}"></li>
+    </ul>
+</div>
+<div>
+    <p th:text="'Session ID: ' + ${session.id}"></p>
+    <form action="/destroy-session" method="post">
+        <button type="submit">Destroy Session</button>
+    </form>
+    <a href="destroyedMsg.html">Go to page3</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Messages</title>
+</head>
+<body>
+<h1>Messages</h1>
+<div>
+    <form action="/save" method="post">
+        <input type="text" name="message" placeholder="Enter your message">
+        <button type="submit">Save</button>
+    </form>
+</div>
+<div th:if="${messages}">
+    <ul>
+        <li th:each="msg : ${messages}" th:text="${msg}"></li>
+    </ul>
+</div>
+<div th:if="${not messages}">
+    <p>No messages available</p>
+</div>
+<div>
+    <p th:text="'Session ID: ' + ${session.id}"></p>
+    <form action="/destroy-session" method="post">
+        <button type="submit">Destroy Session</button>
+    </form>
+    <a href="index.html">Go to page1</a>
+</div>
+</body>
+</html>
